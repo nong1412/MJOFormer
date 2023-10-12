@@ -38,3 +38,7 @@ We encapsulate the model framework in **main.py**, while some related computatio
 Since we are providing the trained model, we need to import the relevant weight parameters, i.e. **rmm1.pth** and **rmm2.pth**.
 
 Some relevant paths need to be changed manually in .py.
+
+### Note
+
+Please forgive me for not being able to upload the data to GitHub as it is too large for ERA5 and S2S. However, the above has given for the processing method.
