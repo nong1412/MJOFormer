@@ -42,6 +42,10 @@ Some relevant paths need to be changed manually in .py.
 
 ### 4. Overview
 
+The framework of MJOFormer is as follows：
+
+![framework]()
+
 
 
 ### Note
