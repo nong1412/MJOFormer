@@ -44,7 +44,7 @@ Some relevant paths need to be changed manually in .py.
 
 The framework of MJOFormer is as follows：
 
-![framework]()
+![framework](framework.pdf)
 
 
 
