@@ -134,7 +134,33 @@ class ReAttention(nn.Module):
         out = rearrange(out, 'b h n d -> b n (h d)')
         out =  self.to_out(out)
         return out
+
+class LandOceanModule(nn.Module):
+  def __init__(self, input_shape):
+    super(LandOceanModule, self).__init__()
     
+    # 随机初始化mask，与输入数据形状相同，初始值在[0, 1]之间
+    self.mask = nn.Parameter(torch.rand(input_shape), requires_grad=True)
+    
+    # 学习参数α和β，初始值为0.5，保证α + β = 1
+    self.alpha = nn.Parameter(torch.tensor(0.5), requires_grad=True)
+    self.beta = nn.Parameter(torch.tensor(0.5), requires_grad=True)
+    
+  def forward(self, X):
+    # 使用学习的α和β来更新mask
+    self.mask = nn.Sigmoid()(self.alpha - self.beta)
+    
+    # 使用mask来划分数据
+    X_land = X * self.mask
+    X_ocean = X * (1 - self.mask)
+    
+    # 进行独热编码
+    X_land_ocean = torch.cat((X_land, X_ocean), dim=-1)
+    
+    return X_land_ocean
+  
+
+
 class LeFF(nn.Module):
     
     def __init__(self, dim = 192, scale = 4, depth_kernel = 3):
@@ -278,7 +304,8 @@ class Encoder(nn.Module):
         return   h, c
 
         
-        
+      
         
         
 
+  

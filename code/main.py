@@ -12,9 +12,9 @@ from einops.layers.torch import Rearrange
 from axial_attention import AxialAttention
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
-from module import Attention, PreNorm, FeedForward, CNNBlock
+from module import Attention, PreNorm, FeedForward, CNNBlock, LandOceanModule
 from function import MJODataset, my_Function
-from vivit import Transformer, ViViT, Model
+from mjoformer import Transformer, ViViT, Model
 import numpy as np
 
 #设置gpu1跑
